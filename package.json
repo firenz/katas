@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "cd native && make test && cd .. && cp native/build/example.js native/build/example.wasm src && jest"
   },
   "author": "",
   "license": "ISC",
