@@ -9,4 +9,11 @@ describe("Mars Rover kata", () => {
     expect(marsRover.position.x).toBe(0)
     expect(marsRover.position.y).toBe(0);
   });
+
+  it("has a starting position by default", () => {
+    const marsRover = new MarsRover();
+
+    expect(marsRover.position.x).toBe(0);
+    expect(marsRover.position.y).toBe(0)
+  });
 })
