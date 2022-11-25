@@ -1,7 +1,7 @@
 export class MarsRover {
   position: { x: number; y: number; };
   
-  constructor() {
-    this.position = {x: 0, y: 0};
+  constructor(positionX: number, positionY: number) {
+    this.position = {x: positionX, y: positionY};
   }
 }
