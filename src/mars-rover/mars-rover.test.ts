@@ -1,3 +1,4 @@
+import { MarsRover } from "./mars-rover";
 
 describe("Mars Rover kata", () => {
   it("is given an starting position", () => {
