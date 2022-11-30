@@ -22,4 +22,13 @@ describe("Mars Rover kata", () => {
 
     expect(marsRover.direction).toBe(Direction.North);
   });
+
+  it("is given a starting position and direction", () => {
+    const positionX = 1;
+    const positionY = 1;
+    const direction = Direction.East;
+    const marsRover = new MarsRover(positionX, positionY, direction);
+
+    expect(marsRover.direction).toBe(Direction.North);
+  });
 })
