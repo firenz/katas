@@ -32,4 +32,12 @@ describe("Mars Rover kata", () => {
     expect(marsRover.position.x).toBe(0);
     expect(marsRover.position.y).toBe(1);
   });
+
+  it("moves backward", () => {
+    const marsRover = new MarsRover();
+    marsRover.backward();
+
+    expect(marsRover.position.x).toBe(0);
+    expect(marsRover.position.y).toBe(-1);
+  });
 })
