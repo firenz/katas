@@ -1,3 +1,10 @@
+export enum Direction {
+  North,
+  South,
+  East,
+  West
+}
+
 export class MarsRover {
   position: { x: number; y: number; };
   

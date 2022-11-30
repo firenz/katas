@@ -1,4 +1,4 @@
-import { MarsRover } from "./mars-rover";
+import { MarsRover, Direction } from "./mars-rover";
 
 describe("Mars Rover kata", () => {
   it("is given an starting position", () => {
@@ -6,7 +6,7 @@ describe("Mars Rover kata", () => {
     const positionY = 0;
     const marsRover = new MarsRover(positionX, positionY);
 
-    expect(marsRover.position.x).toBe(0)
+    expect(marsRover.position.x).toBe(0);
     expect(marsRover.position.y).toBe(0);
   });
 
@@ -14,7 +14,7 @@ describe("Mars Rover kata", () => {
     const marsRover = new MarsRover();
 
     expect(marsRover.position.x).toBe(0);
-    expect(marsRover.position.y).toBe(0)
+    expect(marsRover.position.y).toBe(0);
   });
 
   it("is given an starting direction", () => {
