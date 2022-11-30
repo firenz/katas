@@ -7,8 +7,10 @@ export enum Direction {
 
 export class MarsRover {
   position: { x: number; y: number; };
+  direction: Direction;
   
-  constructor(positionX = 0, positionY = 0) {
+  constructor(direction = Direction.North, positionX = 0, positionY = 0) {
     this.position = {x: positionX, y: positionY};
+    this.direction = direction;
   }
 }
