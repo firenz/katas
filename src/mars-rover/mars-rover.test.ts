@@ -17,7 +17,7 @@ describe("Mars Rover kata", () => {
     expect(marsRover.position.y).toBe(0);
   });
 
-  it("is given an starting direction", () => {
+  it("has a starting direction by default", () => {
     const marsRover = new MarsRover();
 
     expect(marsRover.direction).toBe(Direction.North);
