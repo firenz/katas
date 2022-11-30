@@ -2,12 +2,12 @@ import { MarsRover, Direction } from "./mars-rover";
 
 describe("Mars Rover kata", () => {
   it("is given an starting position", () => {
-    const positionX = 0;
-    const positionY = 0;
+    const positionX = 1;
+    const positionY = 1;
     const marsRover = new MarsRover(positionX, positionY);
 
-    expect(marsRover.position.x).toBe(0);
-    expect(marsRover.position.y).toBe(0);
+    expect(marsRover.position.x).toBe(1);
+    expect(marsRover.position.y).toBe(1);
   });
 
   it("has a starting position by default", () => {
