@@ -8,13 +8,13 @@ describe("Mars Rover kata", () => {
     expect(marsRover.position.y).toBe(0);
   });
 
-  it("has a starting direction by default", () => {
+  it("direction is North by default", () => {
     const marsRover = new MarsRover();
 
     expect(marsRover.direction).toBe(Direction.North);
   });
 
-  it("is given a starting position and direction", () => {
+  it("can be given a starting position and direction", () => {
     const positionX = 1;
     const positionY = 1;
     const direction = Direction.East;
@@ -49,7 +49,7 @@ describe("Mars Rover kata", () => {
   });
 
   describe("turns right", () => {
-    it("turns right", () => {
+    it("turns right to East when facing North", () => {
       const marsRover = new MarsRover();
       marsRover.turnRight();
   
