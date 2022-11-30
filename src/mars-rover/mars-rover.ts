@@ -17,4 +17,8 @@ export class MarsRover {
   forward() {
     this.position.y++;
   }
+
+  backward() {
+    this.position.y--;
+  }
 }
