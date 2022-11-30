@@ -13,4 +13,8 @@ export class MarsRover {
     this.position = {x: positionX, y: positionY};
     this.direction = direction;
   }
+
+  forward() {
+    this.position.y++;
+  }
 }

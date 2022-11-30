@@ -20,7 +20,7 @@ describe("Mars Rover kata", () => {
     const direction = Direction.East;
     const marsRover = new MarsRover(positionX, positionY, direction);
 
-    expect(marsRover.direction).toBe(Direction.North);
+    expect(marsRover.direction).toBe(Direction.East);
   });
 
   it("moves forward", () => {
