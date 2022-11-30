@@ -40,4 +40,11 @@ describe("Mars Rover kata", () => {
     expect(marsRover.position.x).toBe(0);
     expect(marsRover.position.y).toBe(-1);
   });
+
+  it("turns left", () => {
+    const marsRover = new MarsRover();
+    marsRover.turnLeft();
+
+    expect(marsRover.direction).toBe(Direction.East);
+  });
 })
