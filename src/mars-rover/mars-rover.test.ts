@@ -64,4 +64,14 @@ describe("Mars Rover kata", () => {
 
     expect(marsRover.direction).toBe(Direction.North);
   });
+
+  it("looks to the South when turning right while facing East", () => {
+    const positionX = 0;
+    const positionY = 0;
+    const initialDirection = Direction.East;
+    const marsRover = new MarsRover(positionX, positionY, initialDirection);
+    marsRover.turnRight();
+
+    expect(marsRover.direction).toBe(Direction.South);
+  });
 })
