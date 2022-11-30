@@ -23,11 +23,11 @@ export class MarsRover {
   }
 
   turnLeft() {
-    this.direction = Direction.East;
+    this.direction = Direction.West;
   }
 
   turnRight() {
     if(this.direction === Direction.West) this.direction = Direction.North;
-    else  this.direction = Direction.West;
+    else  this.direction = Direction.East;
   }
 }
