@@ -48,40 +48,42 @@ describe("Mars Rover kata", () => {
     expect(marsRover.direction).toBe(Direction.West);
   });
 
-  it("turns right", () => {
-    const marsRover = new MarsRover();
-    marsRover.turnRight();
-
-    expect(marsRover.direction).toBe(Direction.East);
-  });
-
-  it("looks to the North when turning right while facing West", () => {
-    const positionX = 0;
-    const positionY = 0;
-    const initialDirection = Direction.West;
-    const marsRover = new MarsRover(positionX, positionY, initialDirection);
-    marsRover.turnRight();
-
-    expect(marsRover.direction).toBe(Direction.North);
-  });
-
-  it("looks to the South when turning right while facing East", () => {
-    const positionX = 0;
-    const positionY = 0;
-    const initialDirection = Direction.East;
-    const marsRover = new MarsRover(positionX, positionY, initialDirection);
-    marsRover.turnRight();
-
-    expect(marsRover.direction).toBe(Direction.South);
-  });
-
-  it("looks to the West when turning right while facing South", () => {
-    const positionX = 0;
-    const positionY = 0;
-    const initialDirection = Direction.South;
-    const marsRover = new MarsRover(positionX, positionY, initialDirection);
-    marsRover.turnRight();
-
-    expect(marsRover.direction).toBe(Direction.West);
+  describe("turns right", () => {
+    it("turns right", () => {
+      const marsRover = new MarsRover();
+      marsRover.turnRight();
+  
+      expect(marsRover.direction).toBe(Direction.East);
+    });
+  
+    it("looks to the North when turning right while facing West", () => {
+      const positionX = 0;
+      const positionY = 0;
+      const initialDirection = Direction.West;
+      const marsRover = new MarsRover(positionX, positionY, initialDirection);
+      marsRover.turnRight();
+  
+      expect(marsRover.direction).toBe(Direction.North);
+    });
+  
+    it("looks to the South when turning right while facing East", () => {
+      const positionX = 0;
+      const positionY = 0;
+      const initialDirection = Direction.East;
+      const marsRover = new MarsRover(positionX, positionY, initialDirection);
+      marsRover.turnRight();
+  
+      expect(marsRover.direction).toBe(Direction.South);
+    });
+  
+    it("looks to the West when turning right while facing South", () => {
+      const positionX = 0;
+      const positionY = 0;
+      const initialDirection = Direction.South;
+      const marsRover = new MarsRover(positionX, positionY, initialDirection);
+      marsRover.turnRight();
+  
+      expect(marsRover.direction).toBe(Direction.West);
+    });
   });
 })

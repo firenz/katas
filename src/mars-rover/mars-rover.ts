@@ -1,8 +1,8 @@
 export enum Direction {
-  North,
-  South,
-  East,
-  West
+  North = 'north',
+  South = 'south',
+  East = 'east',
+  West = 'west'
 }
 
 export class MarsRover {
@@ -27,9 +27,13 @@ export class MarsRover {
   }
 
   turnRight() {
-    if(this.direction === Direction.West) this.direction = Direction.North;
-    else if(this.direction === Direction.East) this.direction = Direction.South;
-    else if(this.direction === Direction.South) this.direction = Direction.West;
-    else  this.direction = Direction.East;
+    const turnRightMapper = {
+      [Direction.North]: Direction.East,
+      [Direction.South]: Direction.West,
+      [Direction.East]: Direction.South, 
+      [Direction.West]: Direction.North
+    }
+
+    this.direction = turnRightMapper[this.direction];
   }
 }
