@@ -20,6 +20,7 @@ export class MarsRover {
 
   backward() {
     if (this.direction === Direction.South) this.position.y++;
+    else if (this.direction === Direction.East) this.position.x--;
     else this.position.y--;
   }
 
