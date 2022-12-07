@@ -24,6 +24,7 @@ export class MarsRover {
 
   turnLeft() {
     if (this.direction === Direction.West) this.direction = Direction.South;
+    else if (this.direction === Direction.South) this.direction = Direction.East;
     else this.direction = Direction.West;
   }
 
