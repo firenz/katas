@@ -33,45 +33,50 @@ describe("Mars Rover kata", () => {
     expect(marsRover.position.y).toBe(1);
   });
 
-  it("moves backward", () => {
-    const marsRover = new MarsRover();
-    marsRover.backward();
-
-    expect(marsRover.position.x).toBe(0);
-    expect(marsRover.position.y).toBe(-1);
-  });
-
-  it("moves backward to [0, 1] when facing South", () => {
-    const positionX = 0;
-    const positionY = 0;
-    const direction = Direction.South;
-    const marsRover = new MarsRover(positionX, positionY, direction);
-    marsRover.backward();
-
-    expect(marsRover.position.x).toBe(0);
-    expect(marsRover.position.y).toBe(1);
-  });
-
-  it("moves backward to [-1, 0] when facing East", () => {
-    const positionX = 0;
-    const positionY = 0;
-    const direction = Direction.East;
-    const marsRover = new MarsRover(positionX, positionY, direction);
-    marsRover.backward();
-
-    expect(marsRover.position.x).toBe(-1);
-    expect(marsRover.position.y).toBe(0);
-  });
-
-  it("moves backward to [1, 0] when facing West", () => {
-    const positionX = 0;
-    const positionY = 0;
-    const direction = Direction.West;
-    const marsRover = new MarsRover(positionX, positionY, direction);
-    marsRover.backward();
-
-    expect(marsRover.position.x).toBe(1);
-    expect(marsRover.position.y).toBe(0);
+  describe("moves backwards", () => {
+    it("moves backwards to [0, -1] when facing North at [0, 0]", () => {
+      const positionX = 0;
+      const positionY = 0;
+      const direction = Direction.North;
+      const marsRover = new MarsRover(positionX, positionY, direction);
+      marsRover.backward();
+  
+      expect(marsRover.position.x).toBe(0);
+      expect(marsRover.position.y).toBe(-1);
+    });
+  
+    it("moves backwards to [0, 1] when facing South at [0, 0]", () => {
+      const positionX = 0;
+      const positionY = 0;
+      const direction = Direction.South;
+      const marsRover = new MarsRover(positionX, positionY, direction);
+      marsRover.backward();
+  
+      expect(marsRover.position.x).toBe(0);
+      expect(marsRover.position.y).toBe(1);
+    });
+  
+    it("moves backwards to [-1, 0] when facing East at [0, 0]", () => {
+      const positionX = 0;
+      const positionY = 0;
+      const direction = Direction.East;
+      const marsRover = new MarsRover(positionX, positionY, direction);
+      marsRover.backward();
+  
+      expect(marsRover.position.x).toBe(-1);
+      expect(marsRover.position.y).toBe(0);
+    });
+  
+    it("moves backwards to [1, 0] when facing West at [0, 0]", () => {
+      const positionX = 0;
+      const positionY = 0;
+      const direction = Direction.West;
+      const marsRover = new MarsRover(positionX, positionY, direction);
+      marsRover.backward();
+  
+      expect(marsRover.position.x).toBe(1);
+      expect(marsRover.position.y).toBe(0);
+    });
   });
 
   describe("turns left", () => {
