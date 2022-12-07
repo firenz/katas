@@ -15,10 +15,12 @@ export class MarsRover {
   }
 
   forward() {
-    if(this.direction === Direction.South) this.position.y--;
-    else if(this.direction === Direction.West) this.position.x--;
-    else if (this.direction === Direction.East) this.position.x++;
-    else this.position.y++;
+    switch(this.direction) {
+      case Direction.North: this.position.y++; break;
+      case Direction.South: this.position.y--; break;
+      case Direction.East: this.position.x++; break;
+      case Direction.West: this.position.x--; break;
+    }
   }
 
   backward() {
