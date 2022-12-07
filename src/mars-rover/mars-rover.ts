@@ -19,7 +19,8 @@ export class MarsRover {
   }
 
   backward() {
-    this.position.y--;
+    if (this.direction === Direction.South) this.position.y++;
+    else this.position.y--;
   }
 
   turnLeft() {

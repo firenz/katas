@@ -52,6 +52,17 @@ describe("Mars Rover kata", () => {
     expect(marsRover.position.y).toBe(1);
   });
 
+  it("moves backward to [-1, 0] when facing East", () => {
+    const positionX = 0;
+    const positionY = 0;
+    const direction = Direction.East;
+    const marsRover = new MarsRover(positionX, positionY, direction);
+    marsRover.backward();
+
+    expect(marsRover.position.x).toBe(-1);
+    expect(marsRover.position.y).toBe(0);
+  });
+
   describe("turns left", () => {
     it("turns left to West when facing North", () => {
       const positionX = 0;
