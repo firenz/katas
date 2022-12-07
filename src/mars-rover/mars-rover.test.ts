@@ -68,6 +68,16 @@ describe("Mars Rover kata", () => {
     expect(marsRover.direction).toBe(Direction.East);
   });
 
+  it("turns left to North when facing East", () => {
+    const positionX = 0;
+    const positionY = 0;
+    const initialDirection = Direction.East;
+    const marsRover = new MarsRover(positionX, positionY, initialDirection);
+    marsRover.turnLeft();
+
+    expect(marsRover.direction).toBe(Direction.North);
+  });
+
   describe("turns right", () => {
     it("turns right to East when facing North", () => {
       const marsRover = new MarsRover();
