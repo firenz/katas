@@ -252,4 +252,12 @@ describe("Mars Rover kata", () => {
     expect(marsRover.position.x).toBe(0);
     expect(marsRover.position.y).toBe(-2);
   });
+
+  it("can receive a string representing an array of commands to turn left", () => {
+    const input = 'll';
+    const marsRover = new MarsRover();
+    marsRover.command(input);
+
+    expect(marsRover.direction).toBe(Direction.South);
+  });
 })
