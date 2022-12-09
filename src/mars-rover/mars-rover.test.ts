@@ -235,51 +235,53 @@ describe("Mars Rover kata", () => {
     });
   });
 
-  it("can receive a string representing an array of commands to move forward", () => {
-    const input = 'ff';
-    const marsRover = new MarsRover();
-
-    marsRover.command(input);
-
-    expect(marsRover.position.x).toBe(0);
-    expect(marsRover.position.y).toBe(2);
-  });
-
-  it("can receive a string representing an array of commands to move backwards", () => {
-    const input = 'bb';
-    const marsRover = new MarsRover();
-    marsRover.command(input);
-
-    expect(marsRover.position.x).toBe(0);
-    expect(marsRover.position.y).toBe(-2);
-  });
-
-  it("can receive a string representing an array of commands to turn left", () => {
-    const input = 'll';
-    const marsRover = new MarsRover();
-
-    marsRover.command(input);
-
-    expect(marsRover.direction).toBe(Direction.South);
-  });
-
-  it("can receive a string representing an array of commands to turn right", () => {
-    const input = 'rr';
-    const marsRover = new MarsRover();
-
-    marsRover.command(input);
-
-    expect(marsRover.direction).toBe(Direction.South);
-  });
-
-  it("can receive a string representing an array of different commands combined", () => {
-    const input = 'ffbrrlfffb';
-    const marsRover = new MarsRover();
-
-    marsRover.command(input);
-
-    expect(marsRover.position.x).toBe(2);
-    expect(marsRover.position.y).toBe(1);
-    expect(marsRover.direction).toBe(Direction.East);
+  describe("can receive a string representing an array of commands", () => {
+    it("can receive a string representing an array of commands to move forward", () => {
+      const input = 'ff';
+      const marsRover = new MarsRover();
+  
+      marsRover.command(input);
+  
+      expect(marsRover.position.x).toBe(0);
+      expect(marsRover.position.y).toBe(2);
+    });
+  
+    it("can receive a string representing an array of commands to move backwards", () => {
+      const input = 'bb';
+      const marsRover = new MarsRover();
+      marsRover.command(input);
+  
+      expect(marsRover.position.x).toBe(0);
+      expect(marsRover.position.y).toBe(-2);
+    });
+  
+    it("can receive a string representing an array of commands to turn left", () => {
+      const input = 'll';
+      const marsRover = new MarsRover();
+  
+      marsRover.command(input);
+  
+      expect(marsRover.direction).toBe(Direction.South);
+    });
+  
+    it("can receive a string representing an array of commands to turn right", () => {
+      const input = 'rr';
+      const marsRover = new MarsRover();
+  
+      marsRover.command(input);
+  
+      expect(marsRover.direction).toBe(Direction.South);
+    });
+  
+    it("can receive a string representing an array of different commands combined", () => {
+      const input = 'ffbrrlfffb';
+      const marsRover = new MarsRover();
+  
+      marsRover.command(input);
+  
+      expect(marsRover.position.x).toBe(2);
+      expect(marsRover.position.y).toBe(1);
+      expect(marsRover.direction).toBe(Direction.East);
+    });
   });
 })
