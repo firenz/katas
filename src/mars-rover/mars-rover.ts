@@ -53,4 +53,12 @@ export class MarsRover {
 
     this.direction = turnRightMapper[this.direction];
   }
+
+  command(input: string) {
+    const commands = input.split('');
+
+    commands.forEach(command => {
+      if (command === 'f') this.forward();
+    });
+  }
 }
