@@ -29,6 +29,7 @@ export class MarsRover {
       case Direction.South: this.position.y++; break;
       case Direction.East: this.position.x--; break;
       case Direction.West: this.position.x++; break;
+      default: break;
     }
   }
 
@@ -58,10 +59,13 @@ export class MarsRover {
     const commands = input.split('');
 
     commands.forEach(command => {
-      if (command === 'f') this.forward();
-      else if (command === 'b') this.backward();
-      else if (command === 'l') this.turnLeft();
-      else if (command === 'r') this.turnRight();
+      switch (command) {
+        case 'f': this.forward(); break;
+        case 'b': this.backward(); break;
+        case 'l': this.turnLeft(); break;
+        case 'r': this.turnRight(); break;
+        default: break;
+      }
     });
   }
 }
