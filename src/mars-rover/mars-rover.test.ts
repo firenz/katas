@@ -186,6 +186,14 @@ describe("Mars Rover kata", () => {
   });
 
   describe("turns right", () => {
+    it("turns left", () => {
+      const marsRover = new MarsRover();
+      marsRover.turnRight();
+      marsRover.turnRight();
+  
+      expect(marsRover.direction).toBe(Direction.South);
+    });
+
     it("turns right to East when facing North", () => {
       const positionX = 0;
       const positionY = 0;
