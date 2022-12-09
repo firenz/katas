@@ -60,6 +60,7 @@ export class MarsRover {
     commands.forEach(command => {
       if (command === 'f') this.forward();
       else if (command === 'b') this.backward();
+      else if (command === 'l') this.turnLeft();
     });
   }
 }
