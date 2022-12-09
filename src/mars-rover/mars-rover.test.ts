@@ -238,6 +238,7 @@ describe("Mars Rover kata", () => {
   it("can receive a string representing an array of commands to move forward", () => {
     const input = 'ff';
     const marsRover = new MarsRover();
+
     marsRover.command(input);
 
     expect(marsRover.position.x).toBe(0);
@@ -256,6 +257,16 @@ describe("Mars Rover kata", () => {
   it("can receive a string representing an array of commands to turn left", () => {
     const input = 'll';
     const marsRover = new MarsRover();
+
+    marsRover.command(input);
+
+    expect(marsRover.direction).toBe(Direction.South);
+  });
+
+  it("can receive a string representing an array of commands to turn right", () => {
+    const input = 'rr';
+    const marsRover = new MarsRover();
+
     marsRover.command(input);
 
     expect(marsRover.direction).toBe(Direction.South);
