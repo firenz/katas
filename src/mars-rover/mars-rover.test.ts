@@ -26,6 +26,15 @@ describe("Mars Rover kata", () => {
   });
 
   describe("moves forward", () => {
+    it("moves forward", () => {
+      const marsRover = new MarsRover();
+      marsRover.forward();
+      marsRover.forward();
+
+      expect(marsRover.position.x).toBe(0);
+      expect(marsRover.position.y).toBe(2);
+    });
+
     it("moves forward to [0, 1] when facing North at [0, 0]", () => {
       const positionX = 0;
       const positionY = 0;
@@ -72,6 +81,15 @@ describe("Mars Rover kata", () => {
   });
 
   describe("moves backwards", () => {
+    it("moves backwards", () => {
+      const marsRover = new MarsRover();
+      marsRover.backward();
+      marsRover.backward();
+
+      expect(marsRover.position.x).toBe(0);
+      expect(marsRover.position.y).toBe(-2);
+    });
+
     it("moves backwards to [0, -1] when facing North at [0, 0]", () => {
       const positionX = 0;
       const positionY = 0;
@@ -118,6 +136,14 @@ describe("Mars Rover kata", () => {
   });
 
   describe("turns left", () => {
+    it("turns left", () => {
+      const marsRover = new MarsRover();
+      marsRover.turnLeft();
+      marsRover.turnLeft();
+  
+      expect(marsRover.direction).toBe(Direction.South);
+    });
+
     it("turns left to West when facing North", () => {
       const positionX = 0;
       const positionY = 0;
@@ -199,5 +225,14 @@ describe("Mars Rover kata", () => {
   
       expect(marsRover.direction).toBe(Direction.West);
     });
+  });
+
+  it("can receive a string representing an array of commands to move forward", () => {
+    const input = 'ff';
+    const marsRover = new MarsRover();
+    marsRover.command(input);
+
+    expect(marsRover.position.x).toBe(0);
+    expect(marsRover.position.y).toBe(2);
   });
 })
