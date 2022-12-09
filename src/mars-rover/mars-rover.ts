@@ -61,6 +61,7 @@ export class MarsRover {
       if (command === 'f') this.forward();
       else if (command === 'b') this.backward();
       else if (command === 'l') this.turnLeft();
+      else if (command === 'r') this.turnRight();
     });
   }
 }
