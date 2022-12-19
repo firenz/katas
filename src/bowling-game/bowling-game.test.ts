@@ -33,6 +33,7 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(pinsDown);
     bowlingGame.roll(pinsDown);
     bowlingGame.roll(pinsDown);
+    bowlingGame.roll(pinsDown);
 
     expect(bowlingGame.frame[0]).toBe(6);
     expect(bowlingGame.frame[1]).toBe(6);
