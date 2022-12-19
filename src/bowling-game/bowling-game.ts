@@ -14,7 +14,7 @@ export class BowlingGame {
 
   private addFrameScore() {
     const lastRoll = this.rolls[this.rolls.length - 1];
-    const secondToLastRoll = this.rolls[this.rolls.length -2];
+    const secondToLastRoll = this.rolls[this.rolls.length - 2];
     
     this.frame.push(secondToLastRoll + lastRoll);
   }
