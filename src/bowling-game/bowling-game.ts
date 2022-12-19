@@ -5,11 +5,17 @@ export class BowlingGame {
   roll(pins: number) {
     this.rolls.push(pins);
 
-    if (this.rolls.length % 2 === 0) {
-      const lastRoll = this.rolls[this.rolls.length - 1];
-      const secondToLastRoll = this.rolls[this.rolls.length -2];
-      
-      this.frame.push(secondToLastRoll + lastRoll);
-    }
+    if (this.isFrameFinished()) this.addFrameScore();
+  }
+
+  private isFrameFinished(): boolean {
+    return this.rolls.length % 2 === 0;
+  }
+
+  private addFrameScore() {
+    const lastRoll = this.rolls[this.rolls.length - 1];
+    const secondToLastRoll = this.rolls[this.rolls.length -2];
+    
+    this.frame.push(secondToLastRoll + lastRoll);
   }
 };
