@@ -9,8 +9,19 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(pinsDown);
     bowlingGame.roll(pinsDown);
     bowlingGame.roll(pinsDown);
-    expect(bowlingGame.rolls[0]).toEqual(6);
-    expect(bowlingGame.rolls[1]).toEqual(6);
-    expect(bowlingGame.rolls[2]).toEqual(6);
+
+    expect(bowlingGame.rolls[0]).toBe(6);
+    expect(bowlingGame.rolls[1]).toBe(6);
+    expect(bowlingGame.rolls[2]).toBe(6);
   });
+
+  it("get score from a frame", () => {
+    const pinsDown = 3;
+    const bowlingGame = new BowlingGame();
+
+    bowlingGame.roll(pinsDown);
+    bowlingGame.roll(pinsDown);
+
+    expect(bowlingGame.frame[0]).toBe(6);
+  })
 });
