@@ -1,4 +1,4 @@
-import { BowlingGame } from "./bowling-game";
+import { BowlingGame, FRAMES_IN_FULL_GAME, ROLLS_IN_FRAME } from "./bowling-game";
 
 
 describe("Bowling game kata", () => {
@@ -43,11 +43,11 @@ describe("Bowling game kata", () => {
     const pinsDown = 3;
     const bowlingGame = new BowlingGame();
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < FRAMES_IN_FULL_GAME * ROLLS_IN_FRAME; i++) {
       bowlingGame.roll(pinsDown);
     }
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < FRAMES_IN_FULL_GAME; i++) {
       expect(bowlingGame.frame[i]).toBe(6);
     }
 

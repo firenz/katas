@@ -1,6 +1,10 @@
+export const ROLLS_IN_FRAME = 2;
+export const FRAMES_IN_FULL_GAME = 10;
+
 export class BowlingGame {
   rolls: number[] = [];
   frame: number[] = [];
+  score: number = 30;
 
   roll(pins: number) {
     this.rolls.push(pins);
@@ -9,7 +13,7 @@ export class BowlingGame {
   }
 
   private isFrameFinished(): boolean {
-    return this.rolls.length % 2 === 0;
+    return this.rolls.length % ROLLS_IN_FRAME === 0;
   }
 
   private addFrameScore() {
