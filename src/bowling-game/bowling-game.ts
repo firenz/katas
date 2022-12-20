@@ -1,9 +1,14 @@
 export const ROLLS_IN_FRAME = 2;
 export const FRAMES_IN_FULL_GAME = 10;
 
+type Frame = {
+  score: number;
+  type: "spare";
+}
+
 export class BowlingGame {
   rolls: number[] = [];
-  frames: number[] = [];
+  frames: Frame[] = [];
   score: number = 0;
 
   roll(pins: number) {
@@ -23,7 +28,7 @@ export class BowlingGame {
     const lastRoll = this.rolls[this.rolls.length - 1];
     const secondToLastRoll = this.rolls[this.rolls.length - 2];
     
-    this.frames.push(secondToLastRoll + lastRoll);
+    this.frames.push({ score: secondToLastRoll + lastRoll, type: "spare"});
   }
 
   private isGameFinished(): boolean {
@@ -31,6 +36,6 @@ export class BowlingGame {
   }
 
   private calculateScore() {
-    this.score = this.frames.reduce((accumulator, frameScore) => accumulator + frameScore, 0);
+    this.score = this.frames.reduce((accumulator, frame) => accumulator + frame.score, 0);
   }
 };
