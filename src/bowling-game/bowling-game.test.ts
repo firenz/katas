@@ -39,22 +39,7 @@ describe("Bowling game kata", () => {
     expect(bowlingGame.frames[1]).toBe(6);
   });
 
-  it("get score from 10 frames (full game) rolling 3 pins each time", () => {
-    const pinsDown = 3;
-    const bowlingGame = new BowlingGame();
-
-    for (let i = 0; i < FRAMES_IN_FULL_GAME * ROLLS_IN_FRAME; i++) {
-      bowlingGame.roll(pinsDown);
-    }
-
-    for (let i = 0; i < FRAMES_IN_FULL_GAME; i++) {
-      expect(bowlingGame.frames[i]).toBe(6);
-    }
-
-    expect(bowlingGame.score).toBe(60);
-  });
-
-  it("get score from 10 frames (full game) rolling 4 pins each time", () => {
+  it("get score from 10 frames (full game)", () => {
     const pinsDown = 4;
     const bowlingGame = new BowlingGame();
 

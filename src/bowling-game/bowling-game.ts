@@ -4,7 +4,7 @@ export const FRAMES_IN_FULL_GAME = 10;
 export class BowlingGame {
   rolls: number[] = [];
   frames: number[] = [];
-  score: number = 60;
+  score: number = 0;
 
   roll(pins: number) {
     this.rolls.push(pins);
