@@ -63,5 +63,16 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(pinsDownOnSecondRoll);
 
     expect(bowlingGame.frames[0].type).toBe("spare");
-  })
+  });
+
+  it("detect is a frame is not a spare", () => {
+    const pinsDownOnFirstRoll = 3;
+    const pinsDownOnSecondRoll = 6;
+    const bowlingGame = new BowlingGame();
+
+    bowlingGame.roll(pinsDownOnFirstRoll);
+    bowlingGame.roll(pinsDownOnSecondRoll);
+
+    expect(bowlingGame.frames[0].type).toBe("normal");
+  });
 });
