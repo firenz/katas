@@ -28,7 +28,10 @@ export class BowlingGame {
     const lastRoll = this.rolls[this.rolls.length - 1];
     const secondToLastRoll = this.rolls[this.rolls.length - 2];
     
-    this.frames.push({ score: secondToLastRoll + lastRoll, type: "spare"});
+    this.frames.push({ 
+      score: secondToLastRoll + lastRoll, 
+      type: "spare"
+    });
   }
 
   private isGameFinished(): boolean {
