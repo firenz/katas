@@ -22,7 +22,7 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(pinsDown);
     bowlingGame.roll(pinsDown);
 
-    expect(bowlingGame.frame[0]).toBe(6);
+    expect(bowlingGame.frames[0]).toBe(6);
   });
 
   it("get score from multiple frames", () => {
@@ -35,8 +35,8 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(pinsDown);
     bowlingGame.roll(pinsDown);
 
-    expect(bowlingGame.frame[0]).toBe(6);
-    expect(bowlingGame.frame[1]).toBe(6);
+    expect(bowlingGame.frames[0]).toBe(6);
+    expect(bowlingGame.frames[1]).toBe(6);
   });
 
   it("get score from 10 frames (full game) rolling 3 pins each time", () => {
@@ -48,7 +48,7 @@ describe("Bowling game kata", () => {
     }
 
     for (let i = 0; i < FRAMES_IN_FULL_GAME; i++) {
-      expect(bowlingGame.frame[i]).toBe(6);
+      expect(bowlingGame.frames[i]).toBe(6);
     }
 
     expect(bowlingGame.score).toBe(60);
@@ -63,7 +63,7 @@ describe("Bowling game kata", () => {
     }
 
     for (let i = 0; i < FRAMES_IN_FULL_GAME; i++) {
-      expect(bowlingGame.frame[i]).toBe(8);
+      expect(bowlingGame.frames[i]).toBe(8);
     }
 
     expect(bowlingGame.score).toBe(80);
