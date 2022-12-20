@@ -51,6 +51,6 @@ describe("Bowling game kata", () => {
       expect(bowlingGame.frame[i]).toBe(6);
     }
 
-    expect(bowlingGame.score).toBe(30);
+    expect(bowlingGame.score).toBe(60);
   });
 });
