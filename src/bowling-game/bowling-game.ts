@@ -3,8 +3,10 @@ export const FRAMES_IN_FULL_GAME = 10;
 
 type Frame = {
   score: number;
-  type: "normal" | "spare";
+  type: FrameType;
 }
+
+type FrameType = "normal" | "spare";
 
 export class BowlingGame {
   rolls: number[] = [];
@@ -42,7 +44,7 @@ export class BowlingGame {
     this.score = this.frames.reduce((accumulator, frame) => accumulator + frame.score, 0);
   }
 
-  private calculateFrameType(firstRoll: number, secondRoll: number): "normal" | "spare" {
+  private calculateFrameType(firstRoll: number, secondRoll: number): FrameType {
     if ((firstRoll + secondRoll) === 10) return "spare";
 
     return "normal";
