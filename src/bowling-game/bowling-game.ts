@@ -3,7 +3,7 @@ export const FRAMES_IN_FULL_GAME = 10;
 
 type Frame = {
   score: number;
-  type: "spare";
+  type: "normal" | "spare";
 }
 
 export class BowlingGame {
@@ -30,7 +30,7 @@ export class BowlingGame {
     
     this.frames.push({ 
       score: secondToLastRoll + lastRoll, 
-      type: "spare"
+      type: this.calculateFrameType(lastRoll, secondToLastRoll)
     });
   }
 
@@ -40,5 +40,11 @@ export class BowlingGame {
 
   private calculateScore() {
     this.score = this.frames.reduce((accumulator, frame) => accumulator + frame.score, 0);
+  }
+
+  private calculateFrameType(firstRoll: number, secondRoll: number): "normal" | "spare" {
+    if ((firstRoll + secondRoll) === 10) return "spare";
+
+    return "normal";
   }
 };
