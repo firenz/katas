@@ -1,7 +1,10 @@
 export const ROLLS_IN_FRAME = 2;
+export const PINS_DOWN_FOR_SPARE = 10;
 export const FRAMES_IN_FULL_GAME = 10;
 
 type Frame = {
+  pinsDownOnFirstRoll: number;
+  pinsDownOnSecondRoll: number;
   score: number;
   type: FrameType;
 }
@@ -14,26 +17,64 @@ export class BowlingGame {
   score: number = 0;
 
   roll(pins: number) {
+    if (this.isGameFinished()) return;
+
     this.rolls.push(pins);
 
-    if (this.isFrameFinished()) this.addFrameScore();
-    if (this.isGameFinished())  this.calculateScore();
+    if (this.isFrameFinished()) this.addFrameScoreFromRoll();
   }
 
-  private isFrameFinished(): boolean {
-    return this.rolls.length % ROLLS_IN_FRAME === 0;
+  getRoll(index: number): number {
+    return this.rolls[index];
   }
 
-  private addFrameScore() {
+  getFrame(index: number): Frame {
+    return this.frames[index];
+  }
+
+  getScore(): number {
+    return this.score;
+  }
+
+  private addFrameScoreFromRoll() {
     if (this.isGameFinished()) return;
 
     const lastRoll = this.rolls[this.rolls.length - 1];
     const secondToLastRoll = this.rolls[this.rolls.length - 2];
     
-    this.frames.push({ 
-      score: secondToLastRoll + lastRoll, 
-      type: this.calculateFrameType(lastRoll, secondToLastRoll)
-    });
+    this.setFrame(secondToLastRoll, lastRoll);
+  }
+
+  private setFrame(pinsDownOnFirstRoll: number, pinsDownOnSecondRoll: number) {
+    this.rolls.push(pinsDownOnFirstRoll);
+    this.rolls.push(pinsDownOnSecondRoll);
+
+    const sumOfPins = pinsDownOnFirstRoll + pinsDownOnSecondRoll;
+    const frameType = this.calculateFrameType(pinsDownOnFirstRoll, pinsDownOnSecondRoll);
+    const frame: Frame = {
+      pinsDownOnFirstRoll,
+      pinsDownOnSecondRoll,
+      score: sumOfPins, 
+      type: frameType
+    };
+
+    if(frame.type === "spare") {
+      frame.score = sumOfPins;
+    }
+    this.frames.push(frame);
+    this.calculateScore();
+  }
+
+  private calculateFrameType(pinsDownOnFirstRoll: number, pinsDownOnSecondRoll: number): FrameType {
+    if ((pinsDownOnFirstRoll + pinsDownOnSecondRoll) === PINS_DOWN_FOR_SPARE) {
+      return "spare";
+    }
+
+    return "normal";
+  }
+
+  private isFrameFinished(): boolean {
+    return this.rolls.length % ROLLS_IN_FRAME === 0;
   }
 
   private isGameFinished(): boolean {
@@ -41,12 +82,13 @@ export class BowlingGame {
   }
 
   private calculateScore() {
-    this.score = this.frames.reduce((accumulator, frame) => accumulator + frame.score, 0);
-  }
+    const currentScore = this.frames.reduce((accumulator, frame) => accumulator + frame.score, 0);
 
-  private calculateFrameType(firstRoll: number, secondRoll: number): FrameType {
-    if ((firstRoll + secondRoll) === 10) return "spare";
-
-    return "normal";
+    if(this.rolls.length * 2 !== this.frames.length) {
+      const lastRoll = this.rolls[this.rolls.length - 1];
+      this.score = currentScore + lastRoll;
+    } else {
+      this.score = currentScore;
+    }
   }
 };
