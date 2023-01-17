@@ -12,9 +12,9 @@ type Frame = {
 type FrameType = "normal" | "spare";
 
 export class BowlingGame {
-  rolls: number[] = [];
-  frames: Frame[] = [];
-  score: number = 0;
+  private rolls: number[] = [];
+  private frames: Frame[] = [];
+  private score: number = 0;
 
   roll(pins: number) {
     if (this.isGameFinished()) return;
@@ -82,13 +82,6 @@ export class BowlingGame {
   }
 
   private calculateScore() {
-    const currentScore = this.frames.reduce((accumulator, frame) => accumulator + frame.score, 0);
-
-    if(this.rolls.length * 2 !== this.frames.length) {
-      const lastRoll = this.rolls[this.rolls.length - 1];
-      this.score = currentScore + lastRoll;
-    } else {
-      this.score = currentScore;
-    }
+    this.score = this.frames.reduce((accumulator, frame) => accumulator + frame.score, 0);
   }
 };
