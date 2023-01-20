@@ -7,8 +7,8 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(3);
     bowlingGame.roll(4);
 
-    expect(bowlingGame.getRoll(0)).toBe(3);
-    expect(bowlingGame.getRoll(1)).toBe(4);
+    expect(bowlingGame.getRun(0)).toBe(3);
+    expect(bowlingGame.getRun(1)).toBe(4);
   });
 
   it("get score from a frame", () => {
@@ -18,8 +18,8 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(4);
 
     const frame = bowlingGame.getFrame(0);
-    expect(bowlingGame.getRoll(0)).toBe(3);
-    expect(bowlingGame.getRoll(1)).toBe(4);
+    expect(bowlingGame.getRun(0)).toBe(3);
+    expect(bowlingGame.getRun(1)).toBe(4);
     expect(frame.score).toBe(7);
     expect(frame.pinsDownOnFirstRoll).toEqual(3);
     expect(frame.pinsDownOnSecondRoll).toEqual(4);
@@ -69,5 +69,18 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(6);
 
     expect(bowlingGame.getFrame(0).type).toBe("normal");
+  });
+
+  it("get score from a spare", () => {
+    const bowlingGame = new BowlingGame();
+
+    bowlingGame.roll(4);
+    bowlingGame.roll(6);
+    bowlingGame.roll(5);
+    bowlingGame.roll(3);
+
+    const frame = bowlingGame.getFrame(0);
+    expect(frame.type).toBe("spare");
+    expect(frame.score).toBe(15);
   });
 });
