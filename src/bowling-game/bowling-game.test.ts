@@ -11,7 +11,7 @@ describe("Bowling game kata", () => {
     expect(bowlingGame.getRun(1)).toBe(4);
   });
 
-  it("get score from a frame", () => {
+  it("get score from a frame without spares and strikes", () => {
     const bowlingGame = new BowlingGame();
 
     bowlingGame.roll(3);
@@ -25,7 +25,7 @@ describe("Bowling game kata", () => {
     expect(frame.pinsDownOnSecondRoll).toEqual(4);
   });
 
-  it("get score from multiple frames", () => {
+  it("get score from multiple frames without spares and strikes", () => {
     const bowlingGame = new BowlingGame();
 
     bowlingGame.roll(3);
@@ -33,24 +33,54 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(5);
     bowlingGame.roll(1);
 
-    expect(bowlingGame.getFrame(0).score).toBe(7);
-    expect(bowlingGame.getFrame(1).score).toBe(6);
+    expect(bowlingGame.getFrame(0).getScore()).toBe(7);
+    expect(bowlingGame.getFrame(1).getScore()).toBe(6);
     expect(bowlingGame.getScore()).toBe(13);
   });
 
-  it("get score from 10 frames (full game)", () => {
-    const pinsDown = 4;
+  it("get score from 10 frames without spares and strikes", () => {
     const bowlingGame = new BowlingGame();
 
-    for (let i = 0; i < FRAMES_IN_FULL_GAME * ROLLS_IN_FRAME; i++) {
-      bowlingGame.roll(pinsDown);
-    }
+    bowlingGame.roll(1);
+    bowlingGame.roll(2);
 
-    for (let i = 0; i < FRAMES_IN_FULL_GAME; i++) {
-      expect(bowlingGame.getFrame(i).score).toBe(8);
-    }
+    bowlingGame.roll(3);
+    bowlingGame.roll(4);
 
-    expect(bowlingGame.getScore()).toBe(80);
+    bowlingGame.roll(3);
+    bowlingGame.roll(1);
+
+    bowlingGame.roll(7);
+    bowlingGame.roll(2);
+
+    bowlingGame.roll(8);
+    bowlingGame.roll(1);
+
+    bowlingGame.roll(9);
+    bowlingGame.roll(0);
+
+    bowlingGame.roll(6);
+    bowlingGame.roll(2);
+
+    bowlingGame.roll(4);
+    bowlingGame.roll(5);
+
+    bowlingGame.roll(4);
+    bowlingGame.roll(4);
+
+    bowlingGame.roll(0);
+    bowlingGame.roll(0);
+
+    expect(bowlingGame.getScore()).toBe(66);
+  });
+
+  it("detect is a frame is normal", () => {
+    const bowlingGame = new BowlingGame();
+
+    bowlingGame.roll(3);
+    bowlingGame.roll(6);
+
+    expect(bowlingGame.getFrame(0).getType()).toBe("normal");
   });
 
   it("detect is a frame is a spare", () => {
@@ -59,16 +89,7 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(4);
     bowlingGame.roll(6);
 
-    expect(bowlingGame.getFrame(0).type).toBe("spare");
-  });
-
-  it("detect is a frame is not a spare", () => {
-    const bowlingGame = new BowlingGame();
-
-    bowlingGame.roll(3);
-    bowlingGame.roll(6);
-
-    expect(bowlingGame.getFrame(0).type).toBe("normal");
+    expect(bowlingGame.getFrame(0).getType()).toBe("spare");
   });
 
   it("get score from a spare", () => {
@@ -80,7 +101,45 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(3);
 
     const frame = bowlingGame.getFrame(0);
-    expect(frame.type).toBe("spare");
-    expect(frame.score).toBe(15);
+    expect(frame.getType()).toBe("spare");
+    expect(frame.getScore()).toBe(15);
+  });
+
+  it("get score from 10 frames with one spare and no strikes", () => {
+    const bowlingGame = new BowlingGame();
+
+    bowlingGame.roll(1);
+    bowlingGame.roll(2);
+
+    bowlingGame.roll(3);
+    bowlingGame.roll(4);
+
+    bowlingGame.roll(3);
+    bowlingGame.roll(1);
+
+    bowlingGame.roll(7);
+    bowlingGame.roll(2);
+
+    bowlingGame.roll(8);
+    bowlingGame.roll(1);
+
+    bowlingGame.roll(9);
+    bowlingGame.roll(0);
+
+    bowlingGame.roll(6);
+    bowlingGame.roll(2);
+
+    bowlingGame.roll(4);
+    bowlingGame.roll(5);
+
+    bowlingGame.roll(5);
+    bowlingGame.roll(5);
+
+    bowlingGame.roll(5);
+    bowlingGame.roll(2);
+
+    const spareFrame = bowlingGame.getFrame(8);
+    expect(spareFrame.getScore()).toBe(15);
+    expect(bowlingGame.getScore()).toBe(80);
   });
 });

@@ -31,6 +31,14 @@ class Frame {
   updateScore(nextFrame: Frame) {
     if (this.type === "spare") this.score += nextFrame.pinsDownOnFirstRoll;
   }
+
+  getType(): FrameType {
+    return this.type;
+  }
+
+  getScore(): number {
+    return this.score;
+  }
 }
 
 export class BowlingGame {
