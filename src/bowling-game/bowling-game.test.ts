@@ -74,7 +74,7 @@ describe("Bowling game kata", () => {
     expect(bowlingGame.getScore()).toBe(66);
   });
 
-  it("detect is a frame is normal", () => {
+  it("detect frame is normal", () => {
     const bowlingGame = new BowlingGame();
 
     bowlingGame.roll(3);
@@ -83,7 +83,7 @@ describe("Bowling game kata", () => {
     expect(bowlingGame.getFrame(0).getType()).toBe("normal");
   });
 
-  it("detect is a frame is a spare", () => {
+  it("detect frame is a spare", () => {
     const bowlingGame = new BowlingGame();
 
     bowlingGame.roll(4);
@@ -92,7 +92,7 @@ describe("Bowling game kata", () => {
     expect(bowlingGame.getFrame(0).getType()).toBe("spare");
   });
 
-  it("get score from a spare", () => {
+  it("get score from a spare frame that is not last frame", () => {
     const bowlingGame = new BowlingGame();
 
     bowlingGame.roll(4);
@@ -105,7 +105,7 @@ describe("Bowling game kata", () => {
     expect(frame.getScore()).toBe(15);
   });
 
-  it("get score from 10 frames with one spare and no strikes", () => {
+  it("get score from 10 frames with one spare and no strikes that is not last frame", () => {
     const bowlingGame = new BowlingGame();
 
     bowlingGame.roll(1);
@@ -141,5 +141,16 @@ describe("Bowling game kata", () => {
     const spareFrame = bowlingGame.getFrame(8);
     expect(spareFrame.getScore()).toBe(15);
     expect(bowlingGame.getScore()).toBe(80);
+  });
+
+  it("detect frame is a strike", () => {
+    const bowlingGame = new BowlingGame();
+
+    bowlingGame.roll(10);
+    bowlingGame.roll(6);
+
+    expect(bowlingGame.getFrame(0).getType()).toBe("strike");
+    expect(bowlingGame.getFrame(0).pinsDownOnFirstRoll).toBe(10);
+    expect(bowlingGame.getFrame(0).pinsDownOnSecondRoll).toBeUndefined();
   });
 });
