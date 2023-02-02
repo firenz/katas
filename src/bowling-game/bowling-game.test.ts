@@ -17,6 +17,7 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(4);
 
     const frame = bowlingGame.getFrame(0);
+    expect(frame.getRolls().length).toEqual(2);
     expect(frame.getRolls()[0]).toEqual(3);
     expect(frame.getRolls()[1]).toEqual(4);
     expect(bowlingGame.getRun(0)).toBe(3);
