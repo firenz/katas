@@ -17,15 +17,6 @@ class Frame {
     this.calculateBonusRollsFromFrameType();
   }
 
-  private calculateBonusRollsFromFrameType() {
-    this.bonusRollsNeeded =
-      {
-        strike: 2,
-        spare: 1,
-        normal: 0,
-      }[this.type] || 0;
-  }
-
   private calculateFrameType() {
     if (this.rolls.length === 1) {
       this.type = "strike";
@@ -38,6 +29,15 @@ class Frame {
     }
 
     this.type = "normal";
+  }
+
+  private calculateBonusRollsFromFrameType() {
+    this.bonusRollsNeeded =
+      {
+        strike: 2,
+        spare: 1,
+        normal: 0,
+      }[this.type] || 0;
   }
 
   getRolls(): number[] {
