@@ -105,4 +105,22 @@ describe("Bowling game kata", () => {
     expect(spareFrame.getType()).toBe("spare");
     expect(bowlingGame.getScore()).toBe(41);
   });
+
+  it("get score with multiple strikes and spares that aren't last frame", () => {
+    const bowlingGame = new BowlingGame(7);
+
+    bowlingGame.roll(10);
+    bowlingGame.roll(6);
+    bowlingGame.roll(4);
+    bowlingGame.roll(10);
+    bowlingGame.roll(10);
+    bowlingGame.roll(3);
+    bowlingGame.roll(7);
+    bowlingGame.roll(5);
+    bowlingGame.roll(5);
+    bowlingGame.roll(3);
+    bowlingGame.roll(5);
+
+    expect(bowlingGame.getScore()).toBe(119);
+  });
 });

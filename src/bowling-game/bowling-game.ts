@@ -11,25 +11,33 @@ class Frame {
   score: number = 0;
   type: FrameType = "normal";
 
-  constructor(rolls: number[], type: FrameType) {
+  constructor(rolls: number[]) {
     this.rolls = rolls;
-    this.type = type;
+    this.calculateFrameType();
     this.calculateBonusRollsFromFrameType();
   }
 
   private calculateBonusRollsFromFrameType() {
+    this.bonusRollsNeeded =
+      {
+        strike: 2,
+        spare: 1,
+        normal: 0,
+      }[this.type] || 0;
+  }
+
+  private calculateFrameType() {
     if (this.rolls.length === 1) {
-      this.bonusRollsNeeded = 2;
+      this.type = "strike";
       return;
     }
 
-    if (
-      this.rolls.length === 2 &&
-      this.rolls[0] + this.rolls[1] === PINS_DOWN_FOR_SPARE
-    ) {
-      this.bonusRollsNeeded = 1;
+    if (this.rolls[0] + this.rolls[1] === PINS_DOWN_FOR_SPARE) {
+      this.type = "spare";
       return;
     }
+
+    this.type = "normal";
   }
 
   getRolls(): number[] {
@@ -85,20 +93,13 @@ export class BowlingGame {
     const lastRoll = this.rolls[this.rolls.length - 1];
 
     if (this.isStrike(lastRoll)) {
-      frame = new Frame([lastRoll], "strike");
+      frame = new Frame([lastRoll]);
       this.frames.push(frame);
       return;
     }
 
     const secondToLastRoll = this.rolls[this.rolls.length - 2];
-
-    if (this.isSpare(lastRoll, secondToLastRoll)) {
-      frame = new Frame([secondToLastRoll, lastRoll], "spare");
-      this.frames.push(frame);
-      return;
-    }
-
-    frame = new Frame([secondToLastRoll, lastRoll], "normal");
+    frame = new Frame([secondToLastRoll, lastRoll]);
     this.frames.push(frame);
   }
 
@@ -154,9 +155,5 @@ export class BowlingGame {
 
   private isStrike(roll: number) {
     return roll === PINS_DOWN_FOR_STRIKE;
-  }
-
-  private isSpare(firstRoll: number, secondRoll: number) {
-    return firstRoll + secondRoll === PINS_DOWN_FOR_SPARE;
   }
 };
