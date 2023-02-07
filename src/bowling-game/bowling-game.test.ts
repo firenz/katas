@@ -131,6 +131,6 @@ describe("Bowling game kata", () => {
     bowlingGame.roll(4);
     bowlingGame.roll(3);
 
-    expect(bowlingGame.getScore()).toBe(119);
+    expect(bowlingGame.getScore()).toBe(13);
   });
 });
