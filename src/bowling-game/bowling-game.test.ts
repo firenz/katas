@@ -123,4 +123,14 @@ describe("Bowling game kata", () => {
 
     expect(bowlingGame.getScore()).toBe(119);
   });
+
+  it("get score with spare in last frame", () => {
+    const bowlingGame = new BowlingGame(1);
+
+    bowlingGame.roll(6);
+    bowlingGame.roll(4);
+    bowlingGame.roll(3);
+
+    expect(bowlingGame.getScore()).toBe(119);
+  });
 });
