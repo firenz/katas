@@ -90,7 +90,7 @@ export class Character extends InteractiveElement {
 
   receiveDamage(damagePoints: number) {
     super.receiveDamage(damagePoints);
-    if (this.health <= 0) this.isAlive = false;
+    if (this.health === 0) this.isAlive = false;
   }
 
   heal(element: InteractiveElement, healthPoints: number) {
@@ -138,10 +138,11 @@ export class Character extends InteractiveElement {
   }
 
   leaveFaction(factionToLeave: string) {
-    this.factions = this.factions.filter(faction => faction !== factionToLeave);
+    this.factions = this.factions
+      .filter(faction => faction !== factionToLeave);
   }
 
-  isAllyOf(element: InteractiveElement) {
+  isAllyOf(element: InteractiveElement): boolean {
     return this.factions.some(faction => { 
       return element.getFactions().includes(faction);
     });
@@ -165,7 +166,6 @@ export class Prop extends InteractiveElement {
 
   receiveDamage(damagePoints: number) {
     super.receiveDamage(damagePoints);
-    
-    if (this.health <= 0) this.isDestroyed = false;
+    if (this.health === 0) this.isDestroyed = false;
   }
 }
