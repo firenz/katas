@@ -277,11 +277,36 @@ describe("RPG Combat", () => {
     it("Can be attacked by a character", () => {
       const prop = new Prop("Tree", 100);
       const character = new Character("Name");
+      const damage = 25;
 
-      character.attack(prop, 25);
+      character.attack(prop, damage);
 
       expect(prop.getName()).toEqual("Tree");
       expect(prop.getHealth()).toBe(75);
+      expect(prop.getIsDestroyed()).toBe(false);
+    });
+
+    it("Can be destroyed by a character", () => {
+      const prop = new Prop("Tree", 100);
+      const character = new Character("Name");
+      const damageToDestroy = 125;
+
+      character.attack(prop, damageToDestroy);
+
+      expect(prop.getName()).toEqual("Tree");
+      expect(prop.getHealth()).toBe(0);
+      expect(prop.getIsDestroyed()).toBe(true);
+    });
+
+    it("Cannot be attacked by a character", () => {
+      const prop = new Prop("Tree", 100);
+      const character = new Character("Name");
+      const heal = 25;
+
+      character.heal(prop, heal);
+
+      expect(prop.getName()).toEqual("Tree");
+      expect(prop.getHealth()).toBe(100);
     });
   });
 });
