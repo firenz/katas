@@ -12,13 +12,30 @@ type PlayerRank = {
 };
 
 export const generateLeaderboard = (players: PlayerScore[]): PlayerRank[] => {
-  const playerRanks: PlayerRank[] = players.map((player) => {
+  const orderedPlayerScores = players.sort(orderByHighestScore);
+  const playerRanks: PlayerRank[] = [];
+
+  for (let i = 0; i < orderedPlayerScores.length; i++) {
+    const previousPlayer = playerRanks[playerRanks.length - 1];
+    const currentPlayer = players[i];
+    const isSameScoreAsPrevious =
+      previousPlayer !== undefined &&
+      previousPlayer.score === currentPlayer.score;
+
     const rank: PlayerRank = {
-      rank: 1,
-      name: player.name,
-      score: player.score,
+      rank: isSameScoreAsPrevious ? previousPlayer.rank : i + 1,
+      name: currentPlayer.name,
+      score: currentPlayer.score,
     };
-    return rank;
-  });
+
+    playerRanks.push(rank);
+  }
+
   return playerRanks;
+};
+
+const orderByHighestScore = (a: PlayerScore, b: PlayerScore): number => {
+  if (a.score > b.score) return -1;
+  if (a.score < b.score) return 1;
+  return 0;
 };
