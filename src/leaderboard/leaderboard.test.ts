@@ -56,27 +56,27 @@ describe("Leaderboard", () => {
     expect(rank3.score).toBe(8);
   });
 
-  describe("Duplicates", () => {
-    it("gives same rank to players that have the same score", () => {
+  describe("Duplicated score values", () => {
+    it("gives same rank to players who have the same score", () => {
       const playerScore1 = {
         name: "Scott Pilgrim",
         score: 10,
       };
       const playerScore2 = {
-        name: "Kim Pine",
-        score: 8,
-      };
-      const playerScore3 = {
         name: "Envy Adams",
         score: 8,
       };
-  
+      const playerScore3 = {
+        name: "Kim Pine",
+        score: 8,
+      };
+
       const result = generateLeaderboard([
         playerScore1,
         playerScore2,
         playerScore3,
       ]);
-  
+
       expect(result.length).toBe(3);
       const rank1 = result[0];
       expect(rank1.rank).toBe(1);
@@ -84,15 +84,15 @@ describe("Leaderboard", () => {
       expect(rank1.score).toBe(10);
       const rank2 = result[1];
       expect(rank2.rank).toBe(2);
-      expect(rank2.name).toBe("Kim Pine");
+      expect(rank2.name).toBe("Envy Adams");
       expect(rank2.score).toBe(8);
       const rank3 = result[2];
       expect(rank3.rank).toBe(2);
-      expect(rank3.name).toBe("Envy Adams");
+      expect(rank3.name).toBe("Kim Pine");
       expect(rank3.score).toBe(8);
     });
 
-    it("player rank after duplicates is based on position in leaderboard, not in previous rank", () => {
+    it("players with the same score are listed alphabetically by their name", () => {
       const playerScore1 = {
         name: "Scott Pilgrim",
         score: 10,
@@ -105,18 +105,53 @@ describe("Leaderboard", () => {
         name: "Envy Adams",
         score: 8,
       };
-      const playerScore4 = {
-        name: "Knives Chau",
-        score: 7,
-      };
-  
+
       const result = generateLeaderboard([
         playerScore1,
         playerScore2,
         playerScore3,
-        playerScore4
       ]);
-  
+
+      expect(result.length).toBe(3);
+      const rank1 = result[0];
+      expect(rank1.rank).toBe(1);
+      expect(rank1.name).toBe("Scott Pilgrim");
+      expect(rank1.score).toBe(10);
+      const rank2 = result[1];
+      expect(rank2.rank).toBe(2);
+      expect(rank2.name).toBe("Envy Adams");
+      expect(rank2.score).toBe(8);
+      const rank3 = result[2];
+      expect(rank3.rank).toBe(2);
+      expect(rank3.name).toBe("Kim Pine");
+      expect(rank3.score).toBe(8);
+    });
+
+    it("player rank after duplicates is based on the number of players before them in leaderboard, not in previous rank", () => {
+      const playerScore1 = {
+        name: "Scott Pilgrim",
+        score: 10,
+      };
+      const playerScore2 = {
+        name: "Envy Adams",
+        score: 8,
+      };
+      const playerScore3 = {
+        name: "Kim Pine",
+        score: 8,
+      };
+      const playerScore4 = {
+        name: "Knives Chau",
+        score: 7,
+      };
+
+      const result = generateLeaderboard([
+        playerScore1,
+        playerScore2,
+        playerScore3,
+        playerScore4,
+      ]);
+
       expect(result.length).toBe(4);
       const rank1 = result[0];
       expect(rank1.rank).toBe(1);
@@ -124,16 +159,62 @@ describe("Leaderboard", () => {
       expect(rank1.score).toBe(10);
       const rank2 = result[1];
       expect(rank2.rank).toBe(2);
-      expect(rank2.name).toBe("Kim Pine");
+      expect(rank2.name).toBe("Envy Adams");
       expect(rank2.score).toBe(8);
       const rank3 = result[2];
       expect(rank3.rank).toBe(2);
-      expect(rank3.name).toBe("Envy Adams");
+      expect(rank3.name).toBe("Kim Pine");
       expect(rank3.score).toBe(8);
       const rank4 = result[3];
       expect(rank4.rank).toBe(4);
       expect(rank4.name).toBe("Knives Chau");
       expect(rank4.score).toBe(7);
     });
-  })
+
+    describe("Ranks by lowest to highest score", () => {
+      it("order ranks from lowest to highest score if told so", () => {
+        const playerScore1 = {
+          name: "Scott Pilgrim",
+          score: 10,
+        };
+        const playerScore2 = {
+          name: "Gideon Gordon",
+          score: 10,
+        };
+        const playerScore3 = {
+          name: "Wallace Wells",
+          score: 10,
+        };
+        const playerScore4 = {
+          name: "Ramona Flowers",
+          score: 9,
+        };
+  
+        const result = generateLeaderboard([
+          playerScore1,
+          playerScore2,
+          playerScore3,
+          playerScore4
+        ], false);
+  
+        expect(result.length).toBe(4);
+        const rank1 = result[0];
+        expect(rank1.rank).toBe(1);
+        expect(rank1.name).toBe("Ramona Flowers");
+        expect(rank1.score).toBe(9);
+        const rank2 = result[1];
+        expect(rank2.rank).toBe(2);
+        expect(rank2.name).toBe("Gideon Gordon");
+        expect(rank2.score).toBe(10);
+        const rank3 = result[2];
+        expect(rank3.rank).toBe(2);
+        expect(rank3.name).toBe("Scott Pilgrim");
+        expect(rank3.score).toBe(10);
+        const rank4 = result[3];
+        expect(rank4.rank).toBe(2);
+        expect(rank4.name).toBe("Wallace Wells");
+        expect(rank4.score).toBe(10);
+      });
+    });
+  });
 });

@@ -11,8 +11,10 @@ type PlayerRank = {
   score: number;
 };
 
-export const generateLeaderboard = (players: PlayerScore[]): PlayerRank[] => {
-  const orderedPlayerScores = players.sort(orderByHighestScore);
+export const generateLeaderboard = (players: PlayerScore[], sortByHighestScore: boolean = true): PlayerRank[] => {
+  const sortMethod = sortByHighestScore ? orderByHighestScore : orderByLowestScore;
+
+  const orderedPlayerScores = players.sort(sortMethod);
   const playerRanks: PlayerRank[] = [];
 
   for (let i = 0; i < orderedPlayerScores.length; i++) {
@@ -37,5 +39,15 @@ export const generateLeaderboard = (players: PlayerScore[]): PlayerRank[] => {
 const orderByHighestScore = (a: PlayerScore, b: PlayerScore): number => {
   if (a.score > b.score) return -1;
   if (a.score < b.score) return 1;
-  return 0;
+  return orderByAlphabeticalOrder(a, b);
+};
+
+const orderByLowestScore = (a: PlayerScore, b: PlayerScore): number => {
+  if (a.score < b.score) return -1;
+  if (a.score > b.score) return 1;
+  return orderByAlphabeticalOrder(a, b);
+};
+
+const orderByAlphabeticalOrder = (a: PlayerScore, b: PlayerScore): number => {
+  return a.name.localeCompare(b.name);
 };
