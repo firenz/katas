@@ -11,27 +11,29 @@ type PlayerRank = {
   score: number;
 };
 
-export const generateLeaderboard = (players: PlayerScore[], sortByHighestScore: boolean = true): PlayerRank[] => {
-  const sortMethod = sortByHighestScore ? orderByHighestScore : orderByLowestScore;
-
-  const orderedPlayerScores = players.sort(sortMethod);
+export const generateLeaderboard = (
+  players: PlayerScore[],
+  sortByHighestScore: boolean = true
+): PlayerRank[] => {
   const playerRanks: PlayerRank[] = [];
+  const sortMethod = sortByHighestScore
+    ? orderByHighestScore
+    : orderByLowestScore;
 
-  for (let i = 0; i < orderedPlayerScores.length; i++) {
+  players.sort(sortMethod).forEach((player, index) => {
     const previousPlayer = playerRanks[playerRanks.length - 1];
-    const currentPlayer = players[i];
     const isSameScoreAsPrevious =
       previousPlayer !== undefined &&
-      previousPlayer.score === currentPlayer.score;
+      previousPlayer.score === player.score;
 
     const rank: PlayerRank = {
-      rank: isSameScoreAsPrevious ? previousPlayer.rank : i + 1,
-      name: currentPlayer.name,
-      score: currentPlayer.score,
+      rank: isSameScoreAsPrevious ? previousPlayer.rank : index + 1,
+      name: player.name,
+      score: player.score,
     };
 
     playerRanks.push(rank);
-  }
+  });
 
   return playerRanks;
 };
