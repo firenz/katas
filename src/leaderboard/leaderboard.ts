@@ -23,8 +23,7 @@ export const generateLeaderboard = (
   players.sort(sortMethod).forEach((player, index) => {
     const previousPlayer = playerRanks[playerRanks.length - 1];
     const isSameScoreAsPrevious =
-      previousPlayer !== undefined &&
-      previousPlayer.score === player.score;
+      previousPlayer !== undefined && previousPlayer.score === player.score;
 
     const rank: PlayerRank = {
       rank: isSameScoreAsPrevious ? previousPlayer.rank : index + 1,
