@@ -1,4 +1,4 @@
-import { generateLeaderboard } from "./leaderboard";
+import { generateLeaderboard, orderByLowestScore } from "./leaderboard";
 
 describe("Leaderboard", () => {
   it("returns empty leaderboard if not given any players and scores", () => {
@@ -182,7 +182,7 @@ describe("Leaderboard", () => {
 
         const result = generateLeaderboard(
           [playerScore1, playerScore2, playerScore3, playerScore4],
-          false
+          orderByLowestScore
         );
 
         expect(result.length).toBe(4);
